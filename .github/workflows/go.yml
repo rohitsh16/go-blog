@@ -36,7 +36,7 @@ jobs:
 
       # Step 4: Navigate to the backend directory and build
       - name: Build Go Project
-        working-directory: go-blog/backend
+        working-directory: ../backend
         run: |
           go mod download
           go build -v ./...
