@@ -10,38 +10,38 @@ on:
     branches: [ "main" ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
+      # Step 1: Check out the repository
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v4
-      with:
-        go-version: '1.21'
-    # Step 3: Navigate to the backend directory
-    - name: Change directory to backend
-      working-directory: /backend/
-      run: pwd
+      # Step 2: Set up Go environment
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
 
-    # Step 4: Cache Go modules
-    - name: Cache Go modules
-      uses: actions/cache@v3
-      with:
-        path: |
-          ~/.cache/go-build
-          ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-          ${{ runner.os }}-go-
+      # Step 3: Cache Go modules
+      - name: Cache Go modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('go-blog/backend/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
-    # Step 5: Install dependencies
-    - name: Install dependencies
-      run: go mod download
+      # Step 4: Navigate to the backend directory and build
+      - name: Build Go Project
+        working-directory: go-blog/backend
+        run: |
+          go mod download
+          go build -v ./...
 
-    - name: Build
-      run: go build -v ./...
-
-    - name: Test
-      run: go test -v ./...
+      # Step 5: Run tests
+      - name: Test Go Project
+        working-directory: go-blog/backend
+        run: go test -v ./...
