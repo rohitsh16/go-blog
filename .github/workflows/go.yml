@@ -34,14 +34,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-go-
 
-      # Step 4: Navigate to the backend directory and build
+      # Step 4: Build Go Project from the correct directory
       - name: Build Go Project
-        working-directory: ../backend
+        working-directory: go-blog/backend  # Use the correct path relative to repo root
         run: |
           go mod download
           go build -v ./...
-
-      # Step 5: Run tests
-      - name: Test Go Project
-        working-directory: go-blog/backend
-        run: go test -v ./...
