@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+</head>
+<body>
+    <h1>Welcome to My Blog</h1>
+    <ul>
+        {{range .}}
+        <li>
+            <h2>{{.Title}}</h2>
+            <p>{{.Content}}</p>
+        </li>
+        {{end}}
+    </ul>
+    <a href="/create">Create a new post</a>
+</body>
+</html>
