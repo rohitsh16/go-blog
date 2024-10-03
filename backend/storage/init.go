@@ -4,24 +4,41 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
-)
+	"os"
 
-var db *sql.DB
+	"github.com/joho/godotenv"
+)
 
 // Initialize MySQL connection
 func InitDB() {
-	var err error
-	dataSourceName := "user:password@tcp(127.0.0.1:3306)/blogdb" // Replace with your MySQL user, password, and db name
-	db, err = sql.Open("mysql", dataSourceName)
+	// Load the .env file
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error connecting to the database:", err)
+		log.Fatalf("Error loading .env file")
 	}
 
-	// Ping to check if database is accessible
+	// Fetch credentials from environment variables
+	dbHost := os.Getenv("DB_HOST")
+	dbUser := os.Getenv("DB_USER")
+	dbPassword := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+	dbPort := os.Getenv("DB_PORT")
+
+	// Create a connection string
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", dbUser, dbPassword, dbHost, dbPort, dbName)
+
+	// Open a connection to the database
+	db, err := sql.Open("mysql", dsn)
+	if err != nil {
+		log.Fatalf("Error opening database: %v", err)
+	}
+	defer db.Close()
+
+	// Test the connection
 	err = db.Ping()
 	if err != nil {
-		log.Fatal("Error pinging database:", err)
+		log.Fatalf("Error pinging database: %v", err)
 	}
 
-	fmt.Println("Connected to MySQL database!")
+	fmt.Println("Connected to the database successfully!")
 }

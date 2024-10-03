@@ -9,7 +9,7 @@ import (
 // CreatePostHandler serves the page to create a new blog post
 func CreatePostHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
-		tmpl, err := template.ParseFiles("../Frontend/templates/create.html")
+		tmpl, err := template.ParseFiles("../frontend/templates/create.html")
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return

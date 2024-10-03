@@ -1,8 +1,8 @@
 -- Create the database
-CREATE DATABASE blogdb;
+CREATE DATABASE go_blog_db;
 
 -- Switch to the new database
-USE blogdb;
+USE go_blog_db;
 
 -- Create the table for blog posts
 CREATE TABLE posts (
