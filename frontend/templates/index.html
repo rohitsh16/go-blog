@@ -4,17 +4,146 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: #6366f1;
+            color: #fff;
+            padding: 32px 0 18px 0;
+            text-align: center;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        .post-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .post-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            margin-bottom: 28px;
+            padding: 24px 22px 18px 22px;
+            position: relative;
+            transition: box-shadow 0.2s;
+        }
+        .post-card:hover {
+            box-shadow: 0 4px 16px rgba(99,102,241,0.13);
+        }
+        .post-title {
+            margin: 0 0 8px 0;
+            color: #2d3748;
+            font-size: 1.5rem;
+        }
+        .post-date {
+            color: #6b7280;
+            font-size: 0.98rem;
+            margin-bottom: 10px;
+        }
+        .post-content {
+            color: #374151;
+            margin-bottom: 12px;
+            font-size: 1.07rem;
+            line-height: 1.6;
+            max-height: 4.5em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        .post-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn {
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            padding: 7px 16px;
+            border-radius: 5px;
+            font-size: 0.98rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #4f46e5;
+        }
+        .btn-delete {
+            background: #ef4444;
+        }
+        .btn-delete:hover {
+            background: #b91c1c;
+        }
+        .fab {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 58px;
+            height: 58px;
+            font-size: 2.2rem;
+            box-shadow: 0 2px 8px rgba(99,102,241,0.18);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: background 0.2s;
+        }
+        .fab:hover {
+            background: #4f46e5;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 0 4px; }
+            .post-card { padding: 14px 8px 10px 8px; }
+            .fab { right: 12px; bottom: 12px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Blog</h1>
-    <ul>
-        {{range .}}
-        <li>
-            <h2>{{.Title}}</h2>
-            <p>{{.Content}}</p>
-        </li>
-        {{end}}
-    </ul>
-    <a href="/create">Create a new post</a>
+    <div class="header">
+        <h1>Welcome to My Blog</h1>
+        <p style="margin-top:8px;font-size:1.1rem;">Share your thoughts and read what others have posted!</p>
+    </div>
+    <div class="container">
+        <ul class="post-list">
+            {{range .}}
+            <li class="post-card">
+                <h2 class="post-title">{{.Title}}</h2>
+                {{if .CreatedAt}}
+                <div class="post-date">{{.CreatedAt}}</div>
+                {{end}}
+                <div class="post-content">{{.Content}}</div>
+                <div class="post-actions">
+                    <a class="btn" href="/post/{{.ID}}">Read More</a>
+                    <a class="btn" href="/edit/{{.ID}}">Edit</a>
+                    <form action="/delete/{{.ID}}" method="POST" style="display:inline;">
+                        <button class="btn btn-delete" type="submit" onclick="return confirm('Delete this post?')">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {{else}}
+            <li style="text-align:center;color:#6b7280;font-size:1.1rem;">No posts yet. Be the first to <a href="/create" style="color:#6366f1;">create one</a>!</li>
+            {{end}}
+        </ul>
+    </div>
+    <a href="/create" class="fab" title="Create New Post">+</a>
 </body>
 </html>

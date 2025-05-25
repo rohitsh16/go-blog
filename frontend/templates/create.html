@@ -4,16 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Post</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            padding: 32px 28px 24px 28px;
+        }
+        h1 {
+            text-align: center;
+            color: #2d3748;
+        }
+        label {
+            font-weight: 500;
+            color: #374151;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            margin-bottom: 18px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #f9fafb;
+            transition: border 0.2s;
+        }
+        input[type="text"]:focus, textarea:focus {
+            border: 1.5px solid #6366f1;
+            outline: none;
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        button {
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #4f46e5;
+        }
+        .back-link {
+            color: #6366f1;
+            text-decoration: none;
+            font-size: 0.98rem;
+            margin-top: 18px;
+            display: inline-block;
+        }
+        .counter {
+            font-size: 0.92rem;
+            color: #6b7280;
+            float: right;
+            margin-top: -18px;
+            margin-bottom: 10px;
+        }
+        .preview {
+            background: #f3f4f6;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 24px;
+            border: 1px solid #e5e7eb;
+        }
+        .preview h2 {
+            margin-top: 0;
+            color: #374151;
+        }
+        @media (max-width: 700px) {
+            .container { padding: 18px 6px 12px 6px; }
+        }
+    </style>
 </head>
 <body>
-    <h1>Create a New Blog Post</h1>
-    <form action="/create" method="POST">
-        <label for="title">Title:</label><br>
-        <input type="text" id="title" name="title"><br><br>
-        <label for="content">Content:</label><br>
-        <textarea id="content" name="content"></textarea><br><br>
-        <button type="submit">Create Post</button>
-    </form>
-    <a href="/">Back to Home</a>
+    <div class="container">
+        <h1>Create a New Blog Post</h1>
+        <form action="/create" method="POST" autocomplete="off" id="postForm">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" placeholder="Enter post title" required maxlength="100">
+
+            <label for="content">Content:</label>
+            <span class="counter" id="contentCounter">0/1000</span>
+            <textarea id="content" name="content" placeholder="Write your post here..." required maxlength="1000"></textarea>
+            
+            <div class="actions">
+                <button type="submit">Create Post</button>
+                <button type="reset" style="background:#e5e7eb; color:#374151;">Reset</button>
+            </div>
+        </form>
+        <a href="/" class="back-link">&larr; Back to Home</a>
+
+        <div class="preview" id="previewBox" style="display:none;">
+            <h2>Live Preview</h2>
+            <h3 id="previewTitle"></h3>
+            <p id="previewContent"></p>
+        </div>
+    </div>
+    <script>
+        const content = document.getElementById('content');
+        const title = document.getElementById('title');
+        const counter = document.getElementById('contentCounter');
+        const previewBox = document.getElementById('previewBox');
+        const previewTitle = document.getElementById('previewTitle');
+        const previewContent = document.getElementById('previewContent');
+        const form = document.getElementById('postForm');
+
+        function updateCounter() {
+            counter.textContent = content.value.length + "/1000";
+        }
+        function updatePreview() {
+            if (title.value.trim() || content.value.trim()) {
+                previewBox.style.display = "block";
+                previewTitle.textContent = title.value;
+                previewContent.textContent = content.value;
+            } else {
+                previewBox.style.display = "none";
+            }
+        }
+        content.addEventListener('input', () => {
+            updateCounter();
+            updatePreview();
+        });
+        title.addEventListener('input', updatePreview);
+        form.addEventListener('reset', () => {
+            setTimeout(() => {
+                updateCounter();
+                updatePreview();
+            }, 10);
+        });
+        // Initialize on load
+        updateCounter();
+        updatePreview();
+    </script>
 </body>
 </html>
