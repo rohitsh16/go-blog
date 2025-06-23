@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blog</title>
+    <link rel="stylesheet" href="/static/css/index.css">
+    <link rel="stylesheet" href="/static/css/index_user.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Welcome to My Blog</h1>
+        <p style="margin-top:8px;font-size:1.1rem;">Share your thoughts and read what others have posted!</p>
+    </div>
+    <div class="container">
+        <ul class="post-list">
+            {{range .}}
+            <li class="post-card">
+                <h2 class="post-title">{{.Title}}</h2>
+                {{if .CreatedAt}}
+                <div class="post-date">{{.CreatedAt}}</div>
+                {{end}}
+                <div class="post-content">{{.Content}}</div>
+                <div class="post-actions">
+                    <a class="btn" href="/post/{{.ID}}">Read More</a>
+                </div>
+            </li>
+            {{else}}
+            <li style="text-align:center;color:#6b7280;font-size:1.1rem;">
+                No posts yet. Be the first to 
+                <a href="/create" class="user-link">create one</a>!
+            </li>
+            {{end}}
+        </ul>
+    </div>
+    <a href="/create" class="fab" title="Create New Post">+
