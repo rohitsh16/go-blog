@@ -1,21 +1,39 @@
 package main
 
 import (
-	"go-blog/handlerlogic"
-	"go-blog/storage"
+	"context"
 	"log"
-	"net/http"
+	"os/signal"
+	"syscall"
+	"time"
 
-	"github.com/gorilla/mux"
+	"github.com/rohitsh16/go-blog/backend/server"
 )
 
 func main() {
+	srv, err := server.NewServer()
+	if err != nil {
+		log.Fatalf("Server initialization failed: %v", err)
+	}
 
-	storage.InitDB()
-	r := mux.NewRouter()
+	ctx, stop := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
+	defer stop()
 
-	handlerlogic.HandlerRoutes(r)
+	go func() {
+		if err := srv.Start(); err != nil && err.Error() != "http: Server closed" {
+			log.Fatalf("Server failed: %v", err)
+		}
+	}()
 
-	log.Println("Starting server on :8080")
-	http.ListenAndServe(":8080", r)
+	<-ctx.Done()
+	log.Println("Termination signal received")
+
+	shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	if err := srv.Shutdown(shutdownCtx); err != nil {
+		log.Fatalf("Shutdown error: %v", err)
+	}
+
+	log.Println("Server exited gracefully")
 }

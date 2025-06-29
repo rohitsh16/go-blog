@@ -1,9 +1,10 @@
-package handlerlogic
+package handler
 
 import (
-	"go-blog/dto"
 	"net/http"
 	"text/template"
+
+	"github.com/rohitsh16/go-blog/backend/dto"
 )
 
 // HomeHandler serves the homepage with a list of blog posts
