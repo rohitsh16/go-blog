@@ -19,8 +19,11 @@ h1 {
 label {
     font-weight: 500;
     color: #374151;
+    display: block;
+    margin-bottom: 6px;
 }
-input[type="text"], textarea {
+
+input[type="text"], input[type="checkbox"], textarea {
     width: 100%;
     padding: 10px;
     margin-top: 6px;
@@ -31,9 +34,35 @@ input[type="text"], textarea {
     background: #f9fafb;
     transition: border 0.2s;
 }
-input[type="text"]:focus, textarea:focus {
+input[type="text"]:focus, textarea:focus, input[type="checkbox"]:focus {
     border: 1.5px solid #6366f1;
     outline: none;
+}
+input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+    margin-bottom: 14px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+input[type="checkbox"] + label {
+    display: inline;
+    font-weight: normal;
+    margin-left: 0;
+    margin-bottom: 0;
+}
+.form-group {
+    margin-bottom: 16px;
+}
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+.form-row .form-group {
+    margin-bottom: 0;
 }
 textarea {
     min-height: 120px;
@@ -41,8 +70,10 @@ textarea {
 }
 .actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
+    gap: 12px;
+    margin-top: 24px;
 }
 button {
     background: #6366f1;
@@ -56,6 +87,13 @@ button {
 }
 button:hover {
     background: #4f46e5;
+}
+button[type="reset"] {
+    background: #e5e7eb;
+    color: #374151;
+}
+button[type="reset"]:hover {
+    background: #d1d5db;
 }
 .back-link {
     color: #6366f1;
@@ -82,6 +120,15 @@ button:hover {
     margin-top: 0;
     color: #374151;
 }
+.form-hint {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: -14px;
+    margin-bottom: 12px;
+}
 @media (max-width: 700px) {
     .container { padding: 18px 6px 12px 6px; }
+    .form-row { grid-template-columns: 1fr; }
+    .actions { flex-direction: column; align-items: stretch; }
+    button { width: 100%; }
 }

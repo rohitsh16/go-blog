@@ -1,0 +1,275 @@
+/* Dashboard styles for writer and admin pages */
+
+.header {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    color: #fff;
+    padding: 32px 0 18px 0;
+    text-align: center;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
+.header h1 {
+    margin: 0 0 8px 0;
+    font-size: 2rem;
+}
+
+.header p {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+.dashboard-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.dashboard-actions .create-link {
+    background: #10b981;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.dashboard-actions .create-link:hover {
+    background: #059669;
+}
+
+.post-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.post-card:hover {
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+    transform: translateY(-1px);
+}
+
+.post-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 12px;
+}
+
+.post-card-title {
+    margin: 0;
+    color: #2d3748;
+    font-size: 1.3rem;
+    flex: 1;
+}
+
+.post-card-status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.post-card-status.published {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.post-card-status.draft {
+    background: #fee2e2;
+    color: #7f1d1d;
+}
+
+.post-card-meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.post-card-meta span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.post-card-preview {
+    color: #374151;
+    margin: 12px 0;
+    line-height: 1.5;
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.post-card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.btn {
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:hover {
+    background: #4f46e5;
+}
+
+.btn-primary {
+    background: #6366f1;
+}
+
+.btn-primary:hover {
+    background: #4f46e5;
+}
+
+.btn-edit {
+    background: #f59e0b;
+}
+
+.btn-edit:hover {
+    background: #d97706;
+}
+
+.btn-delete {
+    background: #ef4444;
+}
+
+.btn-delete:hover {
+    background: #dc2626;
+}
+
+.btn-view {
+    background: #10b981;
+}
+
+.btn-view:hover {
+    background: #059669;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #6b7280;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.empty-state a {
+    color: #6366f1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.empty-state a:hover {
+    text-decoration: underline;
+}
+
+.filter-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-bar select {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.filter-bar select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+@media (max-width: 700px) {
+    .header {
+        padding: 24px 0 14px;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .dashboard-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .dashboard-actions .create-link {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .post-card {
+        padding: 14px;
+    }
+
+    .post-card-header {
+        flex-direction: column;
+    }
+
+    .post-card-status {
+        align-self: flex-start;
+    }
+
+    .post-card-meta {
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .post-card-actions {
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        flex: 1;
+        min-width: 120px;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .filter-bar select {
+        width: 100%;
+    }
+}

@@ -1,0 +1,10 @@
+**/node_modules
+**/.git
+**/vendor
+**/*.log
+**/*.tmp
+**/.DS_Store
+**/.env
+backend/go-blog
+backend/Dockerfile
+docker-compose.yml

@@ -10,18 +10,43 @@
     <div class="container">
         <h1>Create a New Blog Post</h1>
         <form action="/create" method="POST" autocomplete="off" id="postForm">
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" placeholder="Enter post title" required maxlength="100">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" placeholder="Enter post title" required maxlength="100">
+            </div>
 
-            <label for="content">Content:</label>
-            <span class="counter" id="contentCounter">0/1000</span>
-            <textarea id="content" name="content" placeholder="Write your post here..." required maxlength="1000"></textarea>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="author_name">Author (display name):</label>
+                    <input type="text" id="author_name" name="author_name" placeholder="Your display name (optional)" maxlength="100">
+                    <span class="form-hint">Optional — your byline or pen name</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="slug">Slug (optional):</label>
+                    <input type="text" id="slug" name="slug" placeholder="custom-url-slug" maxlength="255">
+                    <span class="form-hint">URL-friendly identifier</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <span class="counter" id="contentCounter">0/1000</span>
+                <textarea id="content" name="content" placeholder="Write your post here..." required maxlength="1000"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="published" name="published" value="1" checked>
+                    <span>Publish immediately</span>
+                </label>
+                <span class="form-hint">Uncheck to save as draft</span>
+            </div>
             
             <div class="actions">
                 <button type="submit">Create Post</button>
-                <button type="reset" style="background:#e5e7eb; color:#374151;">Reset</button>
+                <button type="reset">Reset</button>
             </div>
-        </form>
         <a href="/" class="back-link">&larr; Back to Home</a>
 
         <div class="preview" id="previewBox" style="display:none;">

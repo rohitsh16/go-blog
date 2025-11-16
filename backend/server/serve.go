@@ -31,6 +31,9 @@ func NewServer() (*Server, error) {
 
 	router := gin.Default() // previously wasn't initiaised it in single object, hence error
 
+	// serve frontend static assets
+	router.Static("/static", "../frontend/static")
+
 	service := handler.Service{
 		Config:       cfg,
 		Mysql:        mysql,

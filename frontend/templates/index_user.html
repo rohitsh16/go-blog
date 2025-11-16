@@ -36,12 +36,21 @@
             {{range .}}
             <li class="post-card">
                 <h2 class="post-title">{{.Title}}</h2>
-                {{if .CreatedAt}}
-                <div class="post-date">{{.CreatedAt}}</div>
+                {{if .AuthorName}}
+                <div class="post-author">By {{.AuthorName}}</div>
+                {{end}}
+                {{if .UpdatedAt}}
+                <div class="post-date">Updated: {{.UpdatedAt}}</div>
+                {{else if .CreatedAt}}
+                <div class="post-date">Published: {{.CreatedAt}}</div>
                 {{end}}
                 <div class="post-content">{{.Content}}</div>
                 <div class="post-actions">
+                    {{if .Slug}}
+                    <a class="btn" href="/post/{{.Slug}}">Read More</a>
+                    {{else}}
                     <a class="btn" href="/post/{{.ID}}">Read More</a>
+                    {{end}}
                 </div>
             </li>
             {{else}}

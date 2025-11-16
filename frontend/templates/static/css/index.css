@@ -39,10 +39,24 @@ body {
     color: #2d3748;
     font-size: 1.5rem;
 }
+.post-author {
+    color: #6366f1;
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
 .post-date {
     color: #6b7280;
     font-size: 0.98rem;
     margin-bottom: 10px;
+}
+.post-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #6b7280;
 }
 .post-content {
     color: #374151;
@@ -54,11 +68,29 @@ body {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
+}
+.post-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+.post-badge.published {
+    background: #d1fae5;
+    color: #065f46;
+}
+.post-badge.draft {
+    background: #fee2e2;
+    color: #7f1d1d;
 }
 .post-actions {
     display: flex;
     gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
 }
 .btn {
     background: #6366f1;
@@ -80,6 +112,12 @@ body {
 }
 .btn-delete:hover {
     background: #b91c1c;
+}
+.btn-edit {
+    background: #f59e0b;
+}
+.btn-edit:hover {
+    background: #d97706;
 }
 .fab {
     position: fixed;
@@ -106,5 +144,31 @@ body {
 @media (max-width: 700px) {
     .container { padding: 0 4px; }
     .post-card { padding: 14px 8px 10px 8px; }
+    .post-actions { flex-wrap: wrap; }
     .fab { right: 12px; bottom: 12px; }
+}
+/* Dashboard and writer-specific styles */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.create-link {
+    background: #10b981;
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.create-link:hover {
+    background: #059669;
+}
+.status-text {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.85rem;
+    color: #6b7280;
 }

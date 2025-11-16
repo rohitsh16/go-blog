@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Writer Dashboard</title>
     <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/dashboard.css">
 </head>
 <body>
     <div class="header">
-        <h1>Admin Dashboard</h1>
-        <p>Manage all blog posts and moderation.</p>
+        <h1>Writer Dashboard</h1>
+        <p>Manage your posts — create new ones or edit existing entries.</p>
     </div>
     <div class="container">
         <div class="dashboard-actions">
@@ -30,7 +30,6 @@
                 </div>
                 <div class="post-card-preview">{{.Content}}</div>
                 <div class="post-card-actions">
-                    <a class="btn btn-view" href="/post/{{if .Slug}}{{.Slug}}{{else}}{{.ID}}{{end}}">View</a>
                     <a class="btn btn-edit" href="/writer/edit/{{.ID}}">Edit</a>
                 </div>
             </div>
@@ -38,7 +37,7 @@
         </div>
         {{else}}
         <div class="empty-state">
-            <p>No posts yet.</p>
+            <p>No posts yet. Start writing your first post!</p>
             <a href="/create">Create a New Post</a>
         </div>
         {{end}}

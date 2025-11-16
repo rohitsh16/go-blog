@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <link rel="stylesheet" href="/static/css/create.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Post</h1>
+        <form action="/writer/edit/{{.ID}}" method="POST" autocomplete="off">
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" value="{{.Title}}" required maxlength="100">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="author_name">Author (display name):</label>
+                    <input type="text" id="author_name" name="author_name" value="{{if .AuthorName}}{{.AuthorName}}{{end}}" maxlength="100">
+                    <span class="form-hint">Optional — your byline or pen name</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="slug">Slug (optional):</label>
+                    <input type="text" id="slug" name="slug" value="{{.Slug}}" maxlength="255" placeholder="custom-url-slug">
+                    <span class="form-hint">URL-friendly identifier</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" required maxlength="1000">{{.Content}}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" id="published" name="published" value="1" {{if .Published}}checked{{end}}>
+                    <span>Publish this post</span>
+                </label>
+            </div>
+
+            <div class="actions">
+                <button type="submit">Save Changes</button>
+                <a href="/writer" style="margin-left:8px;padding:10px 22px;color:#374151;text-decoration:none;">Cancel</a>
+            </div>
+        </form>
+    </div>
+    <script>
+        // auto-resize textarea based on content
+        const ta = document.getElementById('content');
+        if (ta) {
+            ta.style.height = 'auto';
+            ta.style.height = (ta.scrollHeight) + 'px';
+            ta.addEventListener('input', () => {
+                ta.style.height = 'auto';
+                ta.style.height = (ta.scrollHeight) + 'px';
+            });
+        }
+    </script>
+</body>
+</html>

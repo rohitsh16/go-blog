@@ -1,0 +1,33 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8.0
+    container_name: go-blog-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: go_blog_db
+      MYSQL_USER: bloguser
+      MYSQL_PASSWORD: blogpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: go-blog-app
+    depends_on:
+      - db
+    environment:
+      - GO_ENV=development
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend/config_files/config.yaml:/app/backend/config.yaml:ro
+    restart: unless-stopped
+
+volumes:
+  db_data:
