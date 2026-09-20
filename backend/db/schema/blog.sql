@@ -1,11 +1,11 @@
--- Create the database
-CREATE DATABASE go_blog_db;
+-- Create the database if it doesn't already exist
+CREATE DATABASE IF NOT EXISTS go_blog_db;
 
 -- Switch to the new database
 USE go_blog_db;
 
 -- Create the table for blog posts
-CREATE TABLE posts (
+CREATE TABLE IF NOT EXISTS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL,

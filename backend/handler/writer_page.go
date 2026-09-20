@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"net/http"
 	"strconv"
-	"text/template"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -64,7 +63,7 @@ func (s *Service) WriterDashboardHandler(c *gin.Context) {
 		posts = append(posts, dto.NewPostResponse(id, title, content, slugVal, aID, aName, published, createdAt.Time, uAt))
 	}
 
-	tmpl, err := template.ParseFiles("../frontend/templates/writer_dashboard.html")
+	tmpl, err := ParseTemplate("writer_dashboard.html")
 	if err != nil {
 		c.String(http.StatusInternalServerError, "template error: %v", err)
 		return
@@ -128,7 +127,7 @@ func (s *Service) WriterEditHandler(c *gin.Context) {
 		}
 
 		data := dto.NewPostResponse(id, title, content, slugVal, aID, aName, published, createdAt.Time, uAt)
-		tmpl, err := template.ParseFiles("../frontend/templates/writer_edit.html")
+		tmpl, err := ParseTemplate("writer_edit.html")
 		if err != nil {
 			c.String(http.StatusInternalServerError, "template error: %v", err)
 			return

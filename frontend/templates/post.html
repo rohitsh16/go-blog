@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} | My Blog</title>
+    {{if .Summary}}
+    <meta name="description" content="{{.Summary}}">
+    {{end}}
+    <link rel="stylesheet" href="{{.BasePath}}/static/css/index.css">
+    <style>
+        .post-detail-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
+            transition: color 0.15s ease;
+        }
+        .back-link:hover {
+            color: #4f46e5;
+            text-decoration: underline;
+        }
+        .article-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 40px 36px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        }
+        .article-title {
+            font-size: 2.2rem;
+            color: #1f2937;
+            margin: 0 0 16px 0;
+            line-height: 1.25;
+        }
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.95rem;
+            color: #6b7280;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 32px;
+        }
+        .article-author {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+        .article-body {
+            color: #374151;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        .article-body h2 {
+            font-size: 1.6rem;
+            color: #111827;
+            margin-top: 36px;
+            margin-bottom: 14px;
+            border-bottom: 1px solid #f3f4f6;
+            padding-bottom: 8px;
+        }
+        .article-body h3 {
+            font-size: 1.3rem;
+            color: #1f2937;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+        .article-body p {
+            margin: 0 0 20px 0;
+        }
+        .article-body ul, .article-body ol {
+            padding-left: 24px;
+            margin-bottom: 20px;
+        }
+        .article-body li {
+            margin-bottom: 8px;
+        }
+        .article-body pre {
+            background: #1e293b;
+            color: #f8fafc;
+            padding: 18px 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin: 24px 0;
+        }
+        .article-body code {
+            background: #f1f5f9;
+            color: #db2777;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-family: monospace;
+        }
+        .article-body pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        .article-body blockquote {
+            border-left: 4px solid #6366f1;
+            padding: 12px 20px;
+            margin: 24px 0;
+            background: #f5f7ff;
+            color: #4b5563;
+            font-style: italic;
+            border-radius: 0 8px 8px 0;
+        }
+        .article-footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="padding: 24px 0;">
+        <h1 style="font-size: 1.8rem; margin: 0;"><a href="{{.BasePath}}/" style="color:#fff; text-decoration:none;">My Blog</a></h1>
+    </div>
+
+    <div class="post-detail-container">
+        <a href="{{.BasePath}}/" class="back-link">← Back to all posts</a>
+
+        <article class="article-card">
+            <h1 class="article-title">{{.Title}}</h1>
+
+            <div class="article-meta">
+                {{if .Author}}
+                <span class="article-author">By {{.Author}}</span>
+                <span>•</span>
+                {{end}}
+                <span class="article-date">{{.FormattedDate}}</span>
+            </div>
+
+            <div class="article-body">
+                {{.HTMLContent}}
+            </div>
+
+            <div class="article-footer">
+                <a href="{{.BasePath}}/" class="back-link" style="margin-bottom:0;">← Back to all posts</a>
+                <a href="#top" style="color: #6b7280; text-decoration: none; font-size: 0.9rem;">Back to top ↑</a>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

@@ -1,3 +1,94 @@
-# Readme
+# go-blog
 
-## Setting up the Project
+A modern, dual-mode blogging platform written in **Go 1.23**.
+
+It can be operated in two modes:
+1. **Static Mode (GitHub Pages)**: Zero-server, zero-database static HTML/CSS site generated directly from Markdown files and automatically deployed via GitHub Actions.
+2. **Dynamic Mode (Server + Database)**: Gin web server with MySQL database, supporting writer dashboard, admin portal, and REST APIs.
+
+---
+
+## Mode 1: Static Blog (GitHub Pages)
+
+### 1. Authoring Posts
+Posts are written in Markdown with YAML frontmatter in [`content/posts/`](content/posts/):
+
+```bash
+# Create a new post template
+make new-post TITLE="My New Article"
+# or
+./bin/ssg new -title "My New Article"
+```
+
+Example markdown structure (`content/posts/my-new-article.md`):
+```markdown
+---
+title: "My New Article"
+slug: "my-new-article"
+author: "Your Name"
+date: "2026-09-20"
+published: true
+summary: "A brief preview of the post."
+---
+
+Your markdown article content here...
+```
+
+### 2. Building & Previewing Locally
+```bash
+# Build static site to dist/
+make build-static
+
+# Preview locally on http://localhost:3000
+make serve-static
+```
+
+### 3. Deploying to GitHub Pages
+A GitHub Actions workflow is included at [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
+
+To enable GitHub Pages in your repository:
+1. In your GitHub repository, go to **Settings** → **Pages**.
+2. Under **Build and deployment** → **Source**, select **GitHub Actions**.
+3. Push changes to `main` (or commit a new post to `content/posts/`).
+4. GitHub Actions will automatically compile the static site and deploy it to `https://<username>.github.io/<repo-name>/`.
+
+---
+
+## Mode 2: Dynamic Server (Go + MySQL)
+
+### Running with Docker Compose
+```bash
+docker compose up --build
+```
+- Web Application: `http://localhost:8080`
+- MySQL Database: `localhost:3306`
+
+### Running Locally
+```bash
+cd backend
+go run main.go
+```
+
+---
+
+## Exporting MySQL Posts to Static Markdown
+If you have existing posts in your MySQL database and want to convert them to static markdown files:
+```bash
+./bin/ssg export-db
+```
+This exports all database posts to `content/posts/*.md`.
+
+---
+
+## AI Agent Integration (ContextOS)
+This repository includes ContextOS runtime integrations for **Antigravity**, **Cursor**, **Claude Code**, and **Codex**:
+```bash
+# Resume persistent context and latest branch state
+./bin/ctx resume
+
+# Assemble token-budgeted context for a task
+./bin/ctx plan -task "Add syntax highlighting" -budget 2000
+
+# View indexed code graph and memory stats
+./bin/ctx stats
+```

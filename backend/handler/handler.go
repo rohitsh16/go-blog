@@ -16,4 +16,7 @@ func RegisterRoutes(service Service) {
 
 	// Admin profile (management)
 	service.GinFramework.GET("/admin", service.AdminHandler)
+
+	// Single post view (supports /post/:slug and /post/:id)
+	service.GinFramework.GET("/post/:identifier", service.PostDetailHandler)
 }

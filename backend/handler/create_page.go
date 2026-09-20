@@ -4,7 +4,6 @@ import (
 	"database/sql"
 	"net/http"
 	"strings"
-	"text/template"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -21,7 +20,7 @@ import (
 func (s *Service) CreatePostHandler(c *gin.Context) {
 	// If GET, render the create HTML page
 	if c.Request.Method == http.MethodGet {
-		tmpl, err := template.ParseFiles("../frontend/templates/create.html")
+		tmpl, err := ParseTemplate("create.html")
 		if err != nil {
 			c.String(http.StatusInternalServerError, "Template error: %v", err)
 			return

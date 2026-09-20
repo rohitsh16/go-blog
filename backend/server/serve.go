@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -19,7 +20,11 @@ type Server struct {
 
 // creates new server
 func NewServer() (*Server, error) {
-	cfg, cfgErr := config.LoadConfig("config.yaml")
+	cfgPath := "config.yaml"
+	if _, err := os.Stat(cfgPath); os.IsNotExist(err) {
+		cfgPath = "backend/config_files/config.yaml"
+	}
+	cfg, cfgErr := config.LoadConfig(cfgPath)
 	if cfgErr != nil {
 		log.Fatalf("Unable to load config, %v", cfgErr)
 	}
@@ -31,8 +36,12 @@ func NewServer() (*Server, error) {
 
 	router := gin.Default() // previously wasn't initiaised it in single object, hence error
 
-	// serve frontend static assets
-	router.Static("/static", "../frontend/static")
+	// serve frontend static assets (resilient to working directory)
+	staticDir := "frontend/static"
+	if _, err := os.Stat(staticDir); os.IsNotExist(err) {
+		staticDir = "../frontend/static"
+	}
+	router.Static("/static", staticDir)
 
 	service := handler.Service{
 		Config:       cfg,

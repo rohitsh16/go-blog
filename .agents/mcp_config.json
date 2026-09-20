@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "contextos": {
+      "args": [
+        "-repo",
+        "/Users/rohitshukla/Desktop/go-blog",
+        "-mcp"
+      ],
+      "command": "/Users/rohitshukla/Desktop/go-blog/bin/contextd"
+    }
+  }
+}

@@ -3,7 +3,6 @@ package handler
 import (
 	"database/sql"
 	"net/http"
-	"text/template"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -65,7 +64,7 @@ func (s *Service) HomeHandler(c *gin.Context) {
 	}
 
 	// Use the user-facing index template which expects a slice of PostResponse
-	tmpl, err := template.ParseFiles("../frontend/templates/index_user.html")
+	tmpl, err := ParseTemplate("index_user.html")
 	if err != nil {
 		c.String(http.StatusInternalServerError, "template error: %v", err)
 		return
@@ -130,7 +129,7 @@ func (s *Service) AdminHandler(c *gin.Context) {
 		posts = append(posts, dto.NewPostResponse(id, title, content, slugVal, aID, aName, published, createdAt.Time, uAt))
 	}
 
-	tmpl, err := template.ParseFiles("../frontend/templates/index_admin.html")
+	tmpl, err := ParseTemplate("index_admin.html")
 	if err != nil {
 		c.String(http.StatusInternalServerError, "template error: %v", err)
 		return

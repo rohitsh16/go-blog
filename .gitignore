@@ -1,1 +1,11 @@
 backend/vendor/
+.DS_Store
+
+# ContextOS local database and cache
+.contextos/
+*.db
+*.db-wal
+*.db-shm
+
+# Static site generator build output
+dist/

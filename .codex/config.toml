@@ -1,0 +1,3 @@
+[mcp_servers.contextos]
+command = "/Users/rohitshukla/Desktop/go-blog/bin/contextd"
+args = ["-repo", "/Users/rohitshukla/Desktop/go-blog", "-mcp"]
