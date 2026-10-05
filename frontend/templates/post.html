@@ -7,6 +7,14 @@
     {{if .Summary}}
     <meta name="description" content="{{.Summary}}">
     {{end}}
+    <script>
+        (function() {
+            var saved = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link rel="stylesheet" href="{{.BasePath}}/static/css/index.css">
     <style>
         .post-detail-container {
@@ -18,7 +26,7 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            color: #6366f1;
+            color: var(--text-author);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
@@ -26,18 +34,19 @@
             transition: color 0.15s ease;
         }
         .back-link:hover {
-            color: #4f46e5;
             text-decoration: underline;
         }
         .article-card {
-            background: #ffffff;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 40px 36px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            box-shadow: var(--card-shadow);
+            transition: background-color 0.25s ease, border-color 0.25s ease;
         }
         .article-title {
             font-size: 2.2rem;
-            color: #1f2937;
+            color: var(--text-primary);
             margin: 0 0 16px 0;
             line-height: 1.25;
         }
@@ -47,31 +56,31 @@
             align-items: center;
             gap: 16px;
             font-size: 0.95rem;
-            color: #6b7280;
+            color: var(--text-muted);
             padding-bottom: 24px;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid var(--border-color);
             margin-bottom: 32px;
         }
         .article-author {
-            color: #4f46e5;
+            color: var(--text-author);
             font-weight: 600;
         }
         .article-body {
-            color: #374151;
+            color: var(--text-secondary);
             font-size: 1.1rem;
             line-height: 1.8;
         }
         .article-body h2 {
             font-size: 1.6rem;
-            color: #111827;
+            color: var(--text-primary);
             margin-top: 36px;
             margin-bottom: 14px;
-            border-bottom: 1px solid #f3f4f6;
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 8px;
         }
         .article-body h3 {
             font-size: 1.3rem;
-            color: #1f2937;
+            color: var(--text-primary);
             margin-top: 28px;
             margin-bottom: 12px;
         }
@@ -86,8 +95,9 @@
             margin-bottom: 8px;
         }
         .article-body pre {
-            background: #1e293b;
-            color: #f8fafc;
+            background: var(--pre-bg);
+            color: var(--pre-color);
+            border: 1px solid var(--border-color);
             padding: 18px 20px;
             border-radius: 8px;
             overflow-x: auto;
@@ -97,8 +107,8 @@
             margin: 24px 0;
         }
         .article-body code {
-            background: #f1f5f9;
-            color: #db2777;
+            background: var(--code-bg);
+            color: var(--code-color);
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 0.9em;
@@ -108,29 +118,47 @@
             background: transparent;
             color: inherit;
             padding: 0;
+            border: none;
         }
         .article-body blockquote {
-            border-left: 4px solid #6366f1;
+            border-left: 4px solid var(--blockquote-border);
             padding: 12px 20px;
             margin: 24px 0;
-            background: #f5f7ff;
-            color: #4b5563;
+            background: var(--blockquote-bg);
+            color: var(--text-secondary);
             font-style: italic;
             border-radius: 0 8px 8px 0;
         }
         .article-footer {
             margin-top: 40px;
             padding-top: 24px;
-            border-top: 1px solid #e5e7eb;
+            border-top: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
+        @media (max-width: 700px) {
+            .post-detail-container {
+                padding: 0 12px;
+                margin: 20px auto;
+            }
+            .article-card {
+                padding: 24px 18px;
+            }
+            .article-title {
+                font-size: 1.7rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="header" style="padding: 24px 0;">
-        <h1 style="font-size: 1.8rem; margin: 0;"><a href="{{.BasePath}}/" style="color:#fff; text-decoration:none;">My Blog</a></h1>
+    <div class="header" style="padding: 18px 0;">
+        <div class="header-nav">
+            <h1 style="font-size: 1.6rem; margin: 0;"><a href="{{.BasePath}}/" style="color:var(--text-header); text-decoration:none;">My Blog</a></h1>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span><span class="theme-label">Dark</span>
+            </button>
+        </div>
     </div>
 
     <div class="post-detail-container">
@@ -153,9 +181,10 @@
 
             <div class="article-footer">
                 <a href="{{.BasePath}}/" class="back-link" style="margin-bottom:0;">← Back to all posts</a>
-                <a href="#top" style="color: #6b7280; text-decoration: none; font-size: 0.9rem;">Back to top ↑</a>
+                <a href="#top" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Back to top ↑</a>
             </div>
         </article>
     </div>
+    <script src="{{.BasePath}}/static/js/theme.js"></script>
 </body>
 </html>

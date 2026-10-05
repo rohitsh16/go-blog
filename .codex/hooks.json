@@ -4,7 +4,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'codex' -event 'PostToolUse'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'codex' -event 'PostToolUse'",
             "type": "command"
           }
         ]
@@ -14,7 +14,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'codex' -event 'PostToolUseFailure'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'codex' -event 'PostToolUseFailure'",
             "type": "command"
           }
         ]
@@ -24,7 +24,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'codex' -event 'PreToolUse'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'codex' -event 'PreToolUse'",
             "type": "command"
           }
         ]
@@ -34,7 +34,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'codex' -event 'SessionStart'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'codex' -event 'SessionStart'",
             "type": "command"
           }
         ]
@@ -44,7 +44,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'codex' -event 'Stop'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'codex' -event 'Stop'",
             "type": "command"
           }
         ]
@@ -54,7 +54,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'codex' -event 'UserPromptSubmit'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'codex' -event 'UserPromptSubmit'",
             "type": "command"
           }
         ]

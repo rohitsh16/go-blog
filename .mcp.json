@@ -6,7 +6,7 @@
         ".",
         "-mcp"
       ],
-      "command": "/Users/rohitshukla/Desktop/go-blog/bin/contextd",
+      "command": "/Users/rohitshukla/Desktop/ContextOS/bin/contextd",
       "type": "stdio"
     }
   }

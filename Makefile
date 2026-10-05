@@ -6,7 +6,7 @@ all: build-static
 # Compile SSG CLI binary if missing or modified
 bin/ssg: backend/cmd/ssg/main.go backend/pkg/ssg/*.go
 	@mkdir -p bin
-	cd backend && go build -o ../bin/ssg ./cmd/ssg
+	cd backend && go build -buildvcs=false -o ../bin/ssg ./cmd/ssg
 
 # Generate static HTML site in dist/
 build-static: bin/ssg
@@ -28,7 +28,7 @@ new-post: bin/ssg
 # Build dynamic Go backend binary
 build-backend:
 	@mkdir -p bin
-	cd backend && go build -o ../bin/go-blog .
+	cd backend && go build -buildvcs=false -o ../bin/go-blog .
 
 # Run dynamic Go backend
 run-backend:

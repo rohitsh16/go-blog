@@ -4,7 +4,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'gemini' -event 'AfterAgent'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'gemini' -event 'AfterAgent'",
             "name": "contextos-AfterAgent",
             "timeout": 5000,
             "type": "command"
@@ -16,7 +16,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'gemini' -event 'AfterTool'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'gemini' -event 'AfterTool'",
             "name": "contextos-AfterTool",
             "timeout": 5000,
             "type": "command"
@@ -28,7 +28,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'gemini' -event 'BeforeAgent'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'gemini' -event 'BeforeAgent'",
             "name": "contextos-BeforeAgent",
             "timeout": 5000,
             "type": "command"
@@ -40,7 +40,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'gemini' -event 'BeforeTool'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'gemini' -event 'BeforeTool'",
             "name": "contextos-BeforeTool",
             "timeout": 5000,
             "type": "command"
@@ -52,7 +52,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'gemini' -event 'SessionEnd'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'gemini' -event 'SessionEnd'",
             "name": "contextos-SessionEnd",
             "timeout": 5000,
             "type": "command"
@@ -64,7 +64,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'gemini' -event 'SessionStart'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'gemini' -event 'SessionStart'",
             "name": "contextos-SessionStart",
             "timeout": 5000,
             "type": "command"
@@ -80,7 +80,7 @@
         ".",
         "-mcp"
       ],
-      "command": "/Users/rohitshukla/Desktop/go-blog/bin/contextd",
+      "command": "/Users/rohitshukla/Desktop/ContextOS/bin/contextd",
       "type": "stdio"
     }
   }

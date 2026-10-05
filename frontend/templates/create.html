@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Post</title>
+    <script>
+        (function() {
+            var saved = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <link rel="stylesheet" href="/static/css/index.css">
     <link rel="stylesheet" href="/static/css/create.css">
 </head>
 <body>
@@ -91,5 +100,6 @@
         updateCounter();
         updatePreview();
     </script>
+    <script src="/static/js/theme.js"></script>
 </body>
 </html>

@@ -4,32 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blog</title>
+    <script>
+        (function() {
+            var saved = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link rel="stylesheet" href="/static/css/index.css">
     <style>
-        /* User-specific highlight for the create button */
         .fab {
-            background: #10b981;
+            background: var(--btn-success);
         }
         .fab:hover {
-            background: #059669;
+            background: var(--btn-success-hover);
         }
-        /* Subtle shadow for the header */
         .header {
             box-shadow: 0 4px 16px rgba(16,185,129,0.10);
         }
-        /* Add a hover effect for the Read More button */
         .btn {
-            background: #10b981;
+            background: var(--btn-success);
         }
         .btn:hover {
-            background: #059669;
+            background: var(--btn-success-hover);
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Welcome to My Blog</h1>
-        <p style="margin-top:8px;font-size:1.1rem;">Share your thoughts and read what others have posted!</p>
+        <div class="header-inner">
+            <div class="header-top">
+                <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <span class="theme-icon">🌙</span><span class="theme-label">Dark</span>
+                </button>
+            </div>
+            <h1>Welcome to My Blog</h1>
+            <p style="margin-top:8px;font-size:1.1rem;opacity:0.92;">Share your thoughts and read what others have posted!</p>
+        </div>
     </div>
     <div class="container">
         <ul class="post-list">
@@ -54,10 +66,11 @@
                 </div>
             </li>
             {{else}}
-            <li style="text-align:center;color:#6b7280;font-size:1.1rem;">No posts yet. Be the first to <a href="/create" style="color:#10b981;">create one</a>!</li>
+            <li style="text-align:center;color:var(--text-muted);font-size:1.1rem;">No posts yet. Be the first to <a href="/create" style="color:var(--btn-success);">create one</a>!</li>
             {{end}}
         </ul>
     </div>
     <a href="/create" class="fab" title="Create New Post">+</a>
+    <script src="/static/js/theme.js"></script>
 </body>
 </html>

@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page Not Found | My Blog</title>
+    <script>
+        (function() {
+            var saved = localStorage.getItem('theme');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
     <link rel="stylesheet" href="{{.BasePath}}/static/css/index.css">
     <style>
         .error-container {
@@ -11,45 +19,53 @@
             margin: 80px auto;
             text-align: center;
             padding: 40px 20px;
-            background: #fff;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
             border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: var(--card-shadow);
+            transition: background-color 0.25s ease, border-color 0.25s ease;
         }
         .error-code {
             font-size: 5rem;
             font-weight: 800;
-            color: #6366f1;
+            color: var(--text-author);
             margin: 0;
             line-height: 1;
         }
         .error-title {
             font-size: 1.8rem;
-            color: #1f2937;
+            color: var(--text-primary);
             margin: 16px 0 8px 0;
         }
         .error-desc {
-            color: #6b7280;
+            color: var(--text-muted);
             font-size: 1.1rem;
             margin-bottom: 28px;
         }
         .back-btn {
-            background: #6366f1;
+            background: var(--btn-primary);
             color: #fff;
             padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             display: inline-block;
-            transition: background 0.15s;
+            transition: background 0.15s, transform 0.15s;
         }
         .back-btn:hover {
-            background: #4f46e5;
+            background: var(--btn-primary-hover);
+            transform: translateY(-1px);
         }
     </style>
 </head>
 <body>
-    <div class="header" style="padding: 24px 0;">
-        <h1 style="font-size: 1.8rem; margin: 0;"><a href="{{.BasePath}}/" style="color:#fff; text-decoration:none;">My Blog</a></h1>
+    <div class="header" style="padding: 18px 0;">
+        <div class="header-nav">
+            <h1 style="font-size: 1.6rem; margin: 0;"><a href="{{.BasePath}}/" style="color:var(--text-header); text-decoration:none;">My Blog</a></h1>
+            <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span><span class="theme-label">Dark</span>
+            </button>
+        </div>
     </div>
     <div class="error-container">
         <div class="error-code">404</div>
@@ -57,5 +73,6 @@
         <p class="error-desc">The article or page you are looking for does not exist or has been moved.</p>
         <a href="{{.BasePath}}/" class="back-btn">← Back to Homepage</a>
     </div>
+    <script src="{{.BasePath}}/static/js/theme.js"></script>
 </body>
 </html>

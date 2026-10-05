@@ -47,16 +47,17 @@
 }
 
 .post-card {
-    background: #fff;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    box-shadow: var(--card-shadow);
     padding: 20px;
     margin-bottom: 20px;
-    transition: box-shadow 0.2s, transform 0.2s;
+    transition: box-shadow 0.2s, transform 0.2s, background-color 0.25s, border-color 0.25s;
 }
 
 .post-card:hover {
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+    box-shadow: var(--card-shadow-hover);
     transform: translateY(-1px);
 }
 
@@ -69,7 +70,7 @@
 
 .post-card-title {
     margin: 0;
-    color: #2d3748;
+    color: var(--text-primary);
     font-size: 1.3rem;
     flex: 1;
 }
@@ -85,13 +86,13 @@
 }
 
 .post-card-status.published {
-    background: #d1fae5;
-    color: #065f46;
+    background: var(--badge-pub-bg);
+    color: var(--badge-pub-text);
 }
 
 .post-card-status.draft {
-    background: #fee2e2;
-    color: #7f1d1d;
+    background: var(--badge-draft-bg);
+    color: var(--badge-draft-text);
 }
 
 .post-card-meta {
@@ -99,7 +100,7 @@
     gap: 16px;
     margin-bottom: 12px;
     font-size: 0.9rem;
-    color: #6b7280;
+    color: var(--text-muted);
 }
 
 .post-card-meta span {
@@ -109,7 +110,7 @@
 }
 
 .post-card-preview {
-    color: #374151;
+    color: var(--text-secondary);
     margin: 12px 0;
     line-height: 1.5;
     max-height: 60px;
@@ -180,7 +181,7 @@
 .empty-state {
     text-align: center;
     padding: 40px 20px;
-    color: #6b7280;
+    color: var(--text-muted);
 }
 
 .empty-state p {
@@ -189,7 +190,7 @@
 }
 
 .empty-state a {
-    color: #6366f1;
+    color: var(--text-author);
     text-decoration: none;
     font-weight: 500;
 }
@@ -207,9 +208,10 @@
 
 .filter-bar select {
     padding: 8px 12px;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--border-color);
     border-radius: 6px;
-    background: #fff;
+    background: var(--bg-card);
+    color: var(--text-primary);
     cursor: pointer;
     font-size: 0.95rem;
 }
@@ -217,7 +219,7 @@
 .filter-bar select:focus {
     outline: none;
     border-color: #6366f1;
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
 }
 
 @media (max-width: 700px) {

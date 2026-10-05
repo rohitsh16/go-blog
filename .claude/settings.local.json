@@ -4,7 +4,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'claude' -event 'PostToolUse'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'claude' -event 'PostToolUse'",
             "type": "command"
           }
         ]
@@ -14,7 +14,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'claude' -event 'PostToolUseFailure'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'claude' -event 'PostToolUseFailure'",
             "type": "command"
           }
         ]
@@ -24,7 +24,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'claude' -event 'SessionEnd'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'claude' -event 'SessionEnd'",
             "type": "command"
           }
         ]
@@ -34,7 +34,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'claude' -event 'SessionStart'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'claude' -event 'SessionStart'",
             "type": "command"
           }
         ]
@@ -44,7 +44,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'claude' -event 'Stop'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'claude' -event 'Stop'",
             "type": "command"
           }
         ]
@@ -54,7 +54,7 @@
       {
         "hooks": [
           {
-            "command": "'/Users/rohitshukla/Desktop/go-blog/bin/ctx-hook' -agent 'claude' -event 'UserPromptSubmit'",
+            "command": "'/Users/rohitshukla/Desktop/ContextOS/bin/ctx-hook' -agent 'claude' -event 'UserPromptSubmit'",
             "type": "command"
           }
         ]
